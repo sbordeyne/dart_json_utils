@@ -1,5 +1,5 @@
 /// JSON serializers for common first and third-party dart objects
-library json_utils;
+library json_serializable_converters;
 
 export 'src/bytes.dart';
 export 'src/enum.dart';

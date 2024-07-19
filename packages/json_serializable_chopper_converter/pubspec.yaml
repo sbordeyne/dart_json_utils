@@ -1,0 +1,19 @@
+name: json_serializable_chopper_converter
+description: "Converter for Chopper to transform responses into JSON Serializable objects."
+version: 1.0.0
+homepage: "https://github.com/sbordeyne/dart_json_utils/tree/master/packages/json_serializable_chopper_converter"
+
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  chopper: ">=7.4.0 <9.0.0"
+
+dev_dependencies:
+  flutter_lints: ">=3.0.2 <5.0.0"
+  http: ^1.2.1
+  test: ^1.24.9
+  json_serializable: ^6.8.0
+  build_runner: ^2.1.0
+  json_annotation: ^4.9.0
+  chopper_generator: ">=7.4.0 <9.0.0"
