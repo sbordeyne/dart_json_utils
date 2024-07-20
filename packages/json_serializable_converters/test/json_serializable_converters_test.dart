@@ -214,10 +214,7 @@ void main() {
     test('fromJson', () {
       final converter = DirectoryConverter();
       final directory = converter.fromJson(directoryPath);
-      expect(
-          directory,
-          isA<Directory>()
-              .having((directory) => directory.path, 'path', directoryPath));
+      expect(directory, isA<Directory>().having((directory) => directory.path, 'path', directoryPath));
     });
 
     test('nullable toJson', () {
@@ -231,10 +228,7 @@ void main() {
     test('nullable fromJson', () {
       final converter = DirectoryConverter.nullable();
       final directory = converter.fromJson(directoryPath);
-      expect(
-          directory,
-          isA<Directory>()
-              .having((directory) => directory.path, 'path', directoryPath));
+      expect(directory, isA<Directory>().having((directory) => directory.path, 'path', directoryPath));
       expect(converter.fromJson(null), isNull);
     });
   });

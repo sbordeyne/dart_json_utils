@@ -49,8 +49,7 @@ class PostResource extends APIModel {
     required this.userId,
   });
 
-  factory PostResource.fromJson(Map<String, dynamic> json) =>
-      _$PostResourceFromJson(json);
+  factory PostResource.fromJson(Map<String, dynamic> json) => _$PostResourceFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$PostResourceToJson(this);
 }
@@ -68,8 +67,7 @@ class PostCreateBody extends APIModel {
     required this.userId,
   });
 
-  factory PostCreateBody.fromJson(Map<String, dynamic> json) =>
-      _$PostCreateBodyFromJson(json);
+  factory PostCreateBody.fromJson(Map<String, dynamic> json) => _$PostCreateBodyFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$PostCreateBodyToJson(this);
 }

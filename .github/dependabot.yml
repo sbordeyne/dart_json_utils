@@ -1,0 +1,61 @@
+version: 2
+updates:
+  - package-ecosystem: "pub"
+    schedule:
+      interval: "weekly"
+    directory: "/packages/json_serializable_chopper_converter"
+    labels:
+      - "changelog/dependency"
+      - "area/json_serializable_chopper_converter"
+    groups:
+      dev:
+        dependency-type: development
+      prod:
+        dependency-type: production
+
+  - package-ecosystem: "pub"
+    schedule:
+      interval: "weekly"
+    directory: "/packages/json_serializable_converters"
+    labels:
+      - "changelog/dependency"
+      - "area/json_serializable_converters"
+    groups:
+      dev:
+        dependency-type: development
+      prod:
+        dependency-type: production
+
+  - package-ecosystem: "pub"
+    schedule:
+      interval: "weekly"
+    directory: "/packages/json_serializable_flutter_converters"
+    labels:
+      - "changelog/dependency"
+      - "area/json_serializable_flutter_converters"
+    groups:
+      dev:
+        dependency-type: development
+      prod:
+        dependency-type: production
+
+  - package-ecosystem: "pub"
+    schedule:
+      interval: "weekly"
+    directory: "/packages/json_serializable_uuid_converter"
+    labels:
+      - "changelog/dependency"
+      - "area/json_serializable_uuid_converter"
+    groups:
+      dev:
+        dependency-type: development
+      prod:
+        dependency-type: production
+
+  - package-ecosystem: "github-actions"
+    schedule:
+      interval: "daily"
+    directory: "/.github/workflows"
+    labels:
+      - "changelog/dependency"
+      - "area/ci"

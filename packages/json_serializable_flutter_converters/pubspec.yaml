@@ -5,22 +5,18 @@ repository: https://github.com/sbordeyne/dart_json_utils/tree/master/packages/js
 homepage: https://github.com/sbordeyne/dart_json_utils/tree/master/packages/json_serializable_flutter_converters
 issue_tracker: "https://github.com/sbordeyne/dart_json_utils/issues"
 publish_to: pub.dev
-
 topics:
   - json-serializable
   - flutter
   - codegen
   - converter
-
 environment:
   sdk: ">=3.0.0"
   flutter: ">=3.0.0"
-
 dependencies:
   flutter:
     sdk: flutter
   json_annotation: ^4.9.0
-
 dev_dependencies:
   build_runner: ^2.4.11
   json_serializable: ^6.8.0

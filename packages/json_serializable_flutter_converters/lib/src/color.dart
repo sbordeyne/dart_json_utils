@@ -18,14 +18,14 @@ class ColorConverter extends JsonConverter<Color, String> {
 
   @override
   Color fromJson(String json) {
-  if (json.startsWith('#')) {
-    if (json.length == 7) {
-      // No alpha, need to add it as 0xFF
-      return Color(int.parse(json.substring(1, 7), radix: 16) | 0xFF000000);
+    if (json.startsWith('#')) {
+      if (json.length == 7) {
+        // No alpha, need to add it as 0xFF
+        return Color(int.parse(json.substring(1, 7), radix: 16) | 0xFF000000);
+      }
+      return Color(int.parse(json.substring(1, 9), radix: 16));
     }
-    return Color(int.parse(json.substring(1, 9), radix: 16));
-  }
-  throw ArgumentError.value(json, 'color', 'Invalid color');
+    throw ArgumentError.value(json, 'color', 'Invalid color');
   }
 
   @override

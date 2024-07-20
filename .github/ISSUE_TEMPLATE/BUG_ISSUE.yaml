@@ -1,0 +1,45 @@
+name: Bug
+description: Use this template for reporting bugs.
+title: "[Bug]: "
+labels: ["issue/bug"]
+body:
+  - type: dropdown
+    id: package-name
+    attributes:
+      options:
+        - json_serializable_flutter_converters
+        - json_serializable_converters
+        - json_serializable_chopper_converter
+        - json_serializable_uuid_converter
+      label: Package
+      description: Which package is this issue related to?
+    validations:
+      required: true
+  - type: input
+    id: pkg-version
+    attributes:
+      label: Package version
+      description: Which version of the package is the device using?
+    validations:
+      required: true
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: Shell
+    validations:
+      required: false

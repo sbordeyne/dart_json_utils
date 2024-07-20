@@ -1,0 +1,23 @@
+name: Feature Request
+description: Use this template for requesting new features.
+title: "[Feature]: "
+labels: ["issue/feature-request"]
+body:
+  - type: dropdown
+    id: package-name
+    attributes:
+      options:
+        - json_serializable_flutter_converters
+        - json_serializable_converters
+        - json_serializable_chopper_converter
+        - json_serializable_uuid_converter
+      label: Package
+      description: Which package is this issue related to?
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Feature description
+    validations:
+      required: true

@@ -1,0 +1,39 @@
+name: Documentation
+description: Use this template for reporting missing documentation.
+title: "[Docs]: "
+labels: ["issue/documentation"]
+body:
+  - type: dropdown
+    id: package-name
+    attributes:
+      options:
+        - json_serializable_flutter_converters
+        - json_serializable_converters
+        - json_serializable_chopper_converter
+        - json_serializable_uuid_converter
+      label: Package
+      description: Which package is this issue related to?
+    validations:
+      required: true
+  - type: input
+    id: pkg-version
+    attributes:
+      label: Package version
+      description: Which version of the package are you using?
+    validations:
+      required: true
+  - type: input
+    id: class-name
+    attributes:
+      label: Class/method name
+      description: Which class/method is missing documentation?
+    validations:
+      required: true
+  - type: textarea
+    id: documentation
+    attributes:
+      label: Expected documentation
+      placeholder: This class/method does X, uses Y and Z, and returns A.
+    validations:
+      required: false
+

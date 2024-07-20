@@ -1,0 +1,95 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches:
+    - master
+    types:
+    - opened
+    - reopened
+    - labeled
+    - unlabeled
+    - synchronize
+
+permissions:
+  contents: write
+  pull-requests: write
+  deployments: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      flutter-version: 3.22.x
+
+  check-pr-metadata:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: docker://agilepathway/pull-request-label-checker:latest
+      with:
+        prefix_mode: true
+        one_of: changelog/
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: docker://agilepathway/pull-request-label-checker:latest
+      with:
+        prefix_mode: true
+        one_of: area/
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - json_serializable_chopper_converter
+          - json_serializable_converters
+          - json_serializable_flutter_converters
+          - json_serializable_uuid_converter
+    needs:
+      - check-pr-metadata
+      - setup
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
+      - name: ⚙️ Setup LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1
+      - name: ⚙️ Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
+          cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+          flutter-version: '${{ needs.setup.outputs.flutter-version }}'
+          channel: 'stable'
+      - name: ⛔️ Disable dart and flutter analytics
+        run: |
+          dart --disable-analytics
+          flutter config --no-analytics
+          flutter config --no-cli-animations
+      - name: Check formatting
+        if: always()
+        run: |
+          cd packages/${{ matrix.package }}
+          find . -name "*.dart" ! -name "*.g.dart" ! -name "*.chopper.dart" ! -path '*/generated/*' ! -path './proto/*' ! -path '*.dart_tool/*' | tr '\n' ' ' | xargs dart format --output=show --set-exit-if-changed --line-length=150
+      - name: Check lint
+        if: always()
+        run: |
+          cd packages/${{ matrix.package }}
+          flutter analyze --no-pub --no-fatal-infos
+      - name: Run tests
+        if: always()
+        run: |
+          cd packages/${{ matrix.package }}
+          flutter test --coverage --coverage-path=coverage/lcov.info --branch-coverage
+      - name: Post coverage info as PR comment
+        if: success() || failure()
+        uses: romeovs/lcov-reporter-action@v0.4.0
+        with:
+          lcov-file: packages/${{ matrix.package }}/coverage/lcov.info
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: 'Coverage report for ${{ matrix.package }}'
+          working-directory: ${{ github.workspace }}/coverage
