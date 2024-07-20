@@ -1,8 +1,20 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:flutter/material.dart';
 
+class NullableColorConverter extends JsonConverter<Color?, String?> {
+  const NullableColorConverter();
+
+  @override
+  Color? fromJson(String? json) => json == null ? null : const ColorConverter().fromJson(json);
+
+  @override
+  String? toJson(Color? object) => object == null ? null : const ColorConverter().toJson(object);
+}
+
 class ColorConverter extends JsonConverter<Color, String> {
   const ColorConverter();
+
+  static NullableColorConverter nullable() => NullableColorConverter();
 
   @override
   Color fromJson(String json) {
