@@ -1,7 +1,16 @@
 name: json_serializable_uuid_converter
-description: Utilities for working with JsonSerializable
+description: JsonConverter for UUIDs
 version: 1.0.0
-repository: https://github.com/sbordeyne/json_utils/tree/master/packages/json_serializable_uuid_converter
+repository: https://github.com/sbordeyne/dart_json_utils/tree/master/packages/json_serializable_uuid_converter
+homepage: https://github.com/sbordeyne/dart_json_utils/tree/master/packages/json_serializable_uuid_converter
+issue_tracker: "https://github.com/sbordeyne/dart_json_utils/issues"
+publish_to: pub.dev
+
+topics:
+  - json-serializable
+  - uuid
+  - codegen
+  - converter
 
 environment:
   sdk: ">=3.0.0"

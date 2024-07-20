@@ -1,39 +1,45 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A `JsonConverter` to serialize and deserialize `UuidValue` objects.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Easy to use, just add `UuidValueConverter()` in your `@JsonSerializable(converters: [])` annotation
+- Minimal dependencies: compatible with every version of `package:uuid/uuid.dart` from v4 onwards.
+- Full test coverage
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Install the library from `pub.dev`
+
+```bash
+$ flutter pub add json_serializable_uuid_converter
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
 ```dart
-const like = 'sample';
+import 'package:json_serializable_uuid_converter/json_serializable_uuid_converter.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:uuid/uuid.dart';
+
+@JsonSerializable(converters: [UuidValueConverter(validate: true), UuidValueConverter.nullable(validate: false)])
+class MyModel {
+    final UuidValue requiredId;
+    final UuidValue? optionalId;
+
+    const MyModel({
+        required this.requiredId,
+        this.optionalId,
+    });
+
+    factory MyModel.fromJson(Map<String, dynamic> json) => _$MyModelFromJson(json);
+    Map<String, dynamic> toJson() => _$MyModelToJson(this);
+}
 ```
 
-## Additional information
+## Other packages
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+If you need ready-made `JsonSerializable` converters for other common types, take a look at these packages:
+
+- [json_serializable_chopper_converter](https://pub.dev/packages/json_serializable_chopper_converter)
+- [json_serializable_converters](https://pub.dev/packages/json_serializable_converters)
+- [json_serializable_flutter_converters](https://pub.dev/packages/json_serializable_flutter_converters)
