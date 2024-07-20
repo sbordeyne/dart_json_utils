@@ -4,14 +4,13 @@ version: 1.0.0
 homepage: "https://github.com/sbordeyne/dart_json_utils/tree/master/packages/json_serializable_chopper_converter"
 repository: "https://github.com/sbordeyne/dart_json_utils/tree/master/packages/json_serializable_chopper_converter"
 issue_tracker: "https://github.com/sbordeyne/dart_json_utils/issues"
-publish_to: pub.dev
 topics:
   - json-serializable
   - chopper
   - codegen
   - converter
 environment:
-  sdk: '>=3.3.4 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 dependencies:
   chopper: ">=7.4.0 <9.0.0"
 dev_dependencies:

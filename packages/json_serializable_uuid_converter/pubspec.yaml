@@ -4,14 +4,13 @@ version: 1.0.0
 repository: https://github.com/sbordeyne/dart_json_utils/tree/master/packages/json_serializable_uuid_converter
 homepage: https://github.com/sbordeyne/dart_json_utils/tree/master/packages/json_serializable_uuid_converter
 issue_tracker: "https://github.com/sbordeyne/dart_json_utils/issues"
-publish_to: pub.dev
 topics:
   - json-serializable
   - uuid
   - codegen
   - converter
 environment:
-  sdk: ">=3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 dependencies:
   json_annotation: ^4.9.0
   uuid: '>=4.0.0 <5.0.0'

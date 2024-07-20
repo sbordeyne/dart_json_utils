@@ -30,12 +30,10 @@ class UuidValueConverter extends JsonConverter<UuidValue, String> {
 
   final bool validate;
 
-  static NullableUuidValueConverter nullable({bool validate = true}) =>
-      NullableUuidValueConverter(validate: validate);
+  static NullableUuidValueConverter nullable({bool validate = true}) => NullableUuidValueConverter(validate: validate);
 
   @override
-  UuidValue fromJson(String json) =>
-      validate ? UuidValue.withValidation(json) : UuidValue.raw(json);
+  UuidValue fromJson(String json) => validate ? UuidValue.withValidation(json) : UuidValue.raw(json);
 
   @override
   String toJson(UuidValue object) => object.uuid.toLowerCase();
